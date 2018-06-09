@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 // 修改自 LXDZombieSniffer
+// iOS野指针定位
+// https://www.jianshu.com/p/4c8a68bd066c
 
 @interface XDZombieDetector : NSObject
 
