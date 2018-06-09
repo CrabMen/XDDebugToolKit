@@ -24,7 +24,14 @@
 }
 
 - (IBAction)zombiePtrDetectClickAction:(id)sender {
-    NSLog(@"%@", self.assignObject);
+    @try {
+        NSLog(@"%@", self.assignObject);
+    } @catch (NSException *e) {
+        NSLog(@"%@", e);
+    } @finally {
+        
+    }
+    
 }
 
 @end

@@ -18,10 +18,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
  
+    self.title = @"XDDebugTookKit";
+    
     [self.tableView registerClass:[UITableViewCell class]
            forCellReuseIdentifier:@"Cell"];
     self.testCasesClasses = @[
-                              @"XDZombieTestViewController",
+                              @{@"XDZombieTestViewController":@"OC野指针对象检测"},
                               
                               ];
 }
@@ -33,8 +35,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *cls = self.testCasesClasses[indexPath.row];
+    NSDictionary *obj = self.testCasesClasses[indexPath.row];
+    NSString *cls = obj.allKeys.firstObject;
     UIViewController *vc = [self getViewControllerFromStoryboardByStoryBoardID:cls];
+    vc.title = obj.allValues.firstObject;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -43,7 +47,8 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     }
-    cell.textLabel.text = self.testCasesClasses[indexPath.row];
+    NSDictionary *obj = self.testCasesClasses[indexPath.row];
+    cell.textLabel.text = obj.allValues.firstObject;
     return cell;
 }
 
